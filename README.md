@@ -1,2 +1,2 @@
 # React Redux Tutorial for Beginners: The Definitive Guide
-> Companion repo
+> refactor to use self defined middleware for showing that thunk might did for async action
