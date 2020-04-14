@@ -1,19 +1,29 @@
 import React from "react";
-import { render } from "react-dom";
-import { Provider } from "react-redux";
-import store from "./js/store/index";
-import App from "./js/components/App.js";
+import ReactDOM from "react-dom";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
-// if you're in create-react-app import the files as:
-// import store from "./js/store/index";
-// import App from "./js/components/App.js";
+import HomePage from "./pages/home";
+import DashboardPage from "./pages/dashboard";
+import CallbackPage from "./pages/callback";
+import Auth from "./components/Auth";
 
-render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  // The target element might be either root or app,
-  // depending on your development environment
-  // document.getElementById("app")
-  document.getElementById("root")
-);
+function App() {
+  return (
+    <div className="App container">
+      <Auth>
+        <div className="jumbotron">
+          <Router>
+            <Switch>
+              <Route exact path="/" component={HomePage}/>
+              <Route path="/dashboard" component={DashboardPage}/>
+              <Route path="/callback" component={CallbackPage}/>
+            </Switch>
+          </Router>
+        </div>
+      </Auth>
+    </div>
+  );
+}
+
+const rootElement = document.getElementById("root");
+ReactDOM.render(<App/>, rootElement);
